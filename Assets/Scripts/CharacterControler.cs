@@ -20,8 +20,4 @@ public class CharacterControler : MonoBehaviour
         
     }
 
-   // private string TriggerJump;
-    //{
-        
-    //}
 }

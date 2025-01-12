@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Obstacles : MonoBehaviour
@@ -19,7 +20,7 @@ public class Obstacles : MonoBehaviour
 
 
     
-
+    // pour que l'obstacle se déplace avec un Lerp dans le temps d'une startposition a une endposition
     private void MoveObstacle()
     {
         x += Time.deltaTime * speed;
@@ -32,6 +33,7 @@ public class Obstacles : MonoBehaviour
 
     }
 
+    // qui fait revenir l'obstacle a sa startposition quand il a atteint sa endposition avec un x qui revient a zero car le Lerp continue d'augmenter
     private void ResetObstacle()
     {
         RandomScoringPlace();
@@ -39,7 +41,7 @@ public class Obstacles : MonoBehaviour
         x = 0;        
     }
 
-
+    // pour placer la zone de scoring aléatoirement sur les obstacles
     private void RandomScoringPlace()
     {
         float _yPos = Random.Range(yPositionMin, yPositionMax);
@@ -47,16 +49,20 @@ public class Obstacles : MonoBehaviour
         VectorEndPosition = new Vector3(xEndPostion, _yPos, 0);
     }
 
+    // la position
     private void Init()
     {
         VectorStartPosition = new Vector3(xStartPostion, 0, 0);
         VectorEndPosition = new Vector3(xEndPostion, 0, 0);
     }
 
+    // quand le jeu se lance les position des obstacles sont init
     private void Start()
     {
         Init();
     }
+
+    // Chaque frame on actualise la position des obstacles
     private void Update()
     {
         MoveObstacle();
